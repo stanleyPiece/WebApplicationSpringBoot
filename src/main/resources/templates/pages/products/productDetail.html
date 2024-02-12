@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{fragments/layout.html :: head}"></head>
+
+    <body>
+        <header th:replace="~{fragments/layout.html :: header}"></header>
+
+        <article>
+            <div class="container min-vh-100 py-5 text-start">
+                <header>
+                    <h1 th:text="${titleDTO.title}"></h1>
+                </header>
+
+                <section>
+                    <table class="table table-borderless border-top">
+                        <tbody th:object="${product}">
+                            <tr>
+                                <td class="fw-bold col-2">Název Produktu</td>
+                                <td th:text="*{productName}"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold col-2">Popis Produktu</td>
+                                <td th:text="*{productDescription}"></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold col-2">Cena Produktu</td>
+                                <td th:text="*{productPrice} + ' Kč'"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                        <div sec:authorize="hasRole('ADMIN')">
+                            <a th:href="@{'/products/editProduct/' + *{productId}}">Upravit</a> |
+                        </div>
+                        <a th:href="@{/products}">Zpět</a>
+                 </section>
+            </div>
+        </article>
+
+        <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+    </body>
+</html>

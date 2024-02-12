@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/layout.html :: head}"></head>
+
+    <body>
+        <header th:replace="~{fragments/layout.html :: header}"></header>
+
+
+
+        <article>
+            <div class="container min-vh-100 py-5 text-start">
+
+                <div class="alert alert-success text-center" th:text="${success}" th:if="${success}"></div> <!-- flash zpráva o úspěšném provedení akce -->
+
+                <header>
+                    <h1 th:text="${titleDTO.title}"></h1>
+                </header>
+
+                <section>
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <p>
+                            <a class="link-primary" th:href="@{/products/createProduct}">Vytvořit nový</a>
+                        </p>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Název Produktu</th>
+                                <th scope="col">Popis Produktu</th>
+                                <th scope="col">Cena Produktu</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:object="${product}" th:each="product: ${products}">
+                                <td class="fw-bold" th:text="*{productName}"></td>
+                                <td class="fst-italic" th:text="*{productDescription}"></td>
+                                <td th:text="*{productPrice} + ' Kč'"></td>
+                                <td>
+
+                                    <a th:href="@{'/products/productDetail/' + *{productId}}">Detail</a>
+                                    <p sec:authorize="hasRole('ADMIN')">
+                                        <a th:href="@{'/products/editProduct/' + *{productId}}">Upravit</a> |
+                                        <a th:href="@{'/products/deleteProduct/' + *{productId}}">Smazat</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </article>
+
+        <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+    </body>
+
+</html>

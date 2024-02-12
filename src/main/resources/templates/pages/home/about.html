@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <head th:replace="~{fragments/layout.html :: head}"></head>
+    </head>
+    <body>
+        <header th:replace="~{fragments/layout.html :: header}"></header>
+
+        <article>
+            <div class="min-vh-100 text-center"> <!-- min-vh-100 v Bootstrap 5 zajistí, aby byl tento obsah roztažen přes celou stránku a footer zůstal "přilepený" dole na konci stránky -->
+            <header>
+                <h3 class="fw-bold" th:text="${titleDTO.title}"></h3>
+                <p><img th:src="@{/images/eShop.png}" alt="E-Shop"/></p>
+
+            </header>
+
+            <section>
+                <h3 class="fw-bold">O našem Eshopu</h3>
+
+                <p class="fs-6">
+                    Náš e-shop je vytvořen pro možnost prodeje produktu.
+                </p>
+                <p class="fs-6">
+                    Díky využití JPA můžeme přidávat produkty přímo z webu.
+                </p>
+                <p class="fs-6">
+                    Produkty můžeme také dle možností upravit nebo smazat přímo z webu. Lze si také prohlédnout detail daného produktu.
+                </p>
+            </section>
+            </div>
+        </article>
+
+        <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+    </body>
+</html>

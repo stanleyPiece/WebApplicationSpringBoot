@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head">
+        <meta charset="UTF-8">
+        <title>E-Shop</title>
+
+        <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}" type="text/css"/>
+    </head>
+
+    <body>
+        <header th:fragment="header">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link text-secondary" th:href="@{/}">Hlavní strana</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary" th:href="@{/about}">O Eshopu</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary" th:href="@{/products}">Produkty</a></li>
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a class="nav-link text-secondary" th:href="@{/account/login}">Přihlášení</a></li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <form method="post" th:action="@{/account/logout}">
+                        <button class="btn btn-link text-secondary text-decoration-none shadow-none">Odhlášení</button>
+                    </form>
+                </li>
+            </ul>
+            <hr>
+        </header>
+
+
+        <footer class="mt-auto text-secondary border-top" th:fragment="footer">
+                <div class="container py-3">
+                    &copy; 2024 - Eshop
+                </div>
+        </footer>
+
+    </body>
+</html>

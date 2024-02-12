@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <head th:replace="~{fragments/layout.html :: head}"></head>
+    </head>
+    <body>
+        <header th:replace="~{fragments/layout.html :: header}"></header>
+
+        <article>
+            <div class="min-vh-100 text-center">
+                <header>
+                    <h1 th:text="${titleDTO.title}"></h1>
+                </header>
+                <section>
+                <p class="fs-2">Vítejte na našem E-shopu.</p>
+                <p class="fs-5">Pokračujte na stránku o našem e-shopu nebo přejděte na nabízené produkty.</p>
+                </section>
+                </div>
+        </article>
+
+        <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+    </body>
+</html>
